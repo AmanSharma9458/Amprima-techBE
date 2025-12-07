@@ -6,7 +6,7 @@ import com.amprima.tech.entity.Lead;
 import com.amprima.tech.repository.LeadRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class LeadService {
-
-    private final LeadRepository leadRepository;
-    private final EmailService emailService;
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LeadService.class);
+    @Autowired
+    private LeadRepository leadRepository;
+//    private final EmailService emailService;
 
     @Transactional
     public LeadResponseDTO createLead(LeadDTO leadDTO, HttpServletRequest request) {
